@@ -1,0 +1,43 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '4.0.0'
+	id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'com.shopping'
+version = '0.0.1-SNAPSHOT'
+description = 'Demo project for Spring Boot'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(17)
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+    // 웹 + MVC
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    // Thymeleaf 템플릿
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    // JPA (MySQL이랑 연결해서 엔티티 매핑)
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    // (추천) 폼 검증용 - @NotBlank, @Email 이런거
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    // MySQL 드라이버
+    runtimeOnly 'com.mysql:mysql-connector-j'
+    // Lombok (게터/세터/빌더 등)
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    // 개발 편의 (자동 리스타트 등)
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    // 테스트 (JUnit, MockMvc 등 다 포함)
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
